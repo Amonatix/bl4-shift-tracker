@@ -1,8 +1,10 @@
 name: Scrape SHiFT Codes
 
 on:
+  # Läuft automatisch alle 6 Stunden (UTC)
   schedule:
-    - cron: "0 10 * * *"   # 12:00 Europe/Berlin im Sommer
+    - cron: "0 */6 * * *"
+  # Manuell auslösen bleibt möglich
   workflow_dispatch: {}
 
 jobs:
@@ -20,7 +22,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
